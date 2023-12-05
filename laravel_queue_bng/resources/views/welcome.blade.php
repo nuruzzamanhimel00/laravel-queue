@@ -18,17 +18,34 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card my-5" >
-
+                    <div class="card-title">
+                        <h1>Register</h1>
+                    </div>
                     <div class="card-body">
+                        <form method="POST" action="{{route('register')}}">
+                            @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                           </div>
                           <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" >
                           </div>
+                          <button class="btn btn-success" type="submit">Submit</button>
+                        </form>
                   </div>
+
+
 
             </div>
         </div>
