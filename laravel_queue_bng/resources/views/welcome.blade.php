@@ -42,6 +42,7 @@
                             <input type="text" name="name" class="form-control" id="name" >
                           </div>
                           <button class="btn btn-success" type="submit">Submit</button>
+                          <a href="{{route('sendOtp')}}" class="btn btn-danger" type="">Send OTP</a>
                         </form>
                   </div>
 

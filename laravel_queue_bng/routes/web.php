@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/register', [HomeController::class, 'register'])->name('register');
+Route::get('/send-otp', [HomeController::class, 'sendOtp'])->name('sendOtp');

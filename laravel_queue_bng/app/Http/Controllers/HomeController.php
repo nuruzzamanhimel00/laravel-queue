@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendEmailQueueJob;
+use App\Jobs\SendOTPJob;
 use App\Mail\SendAdminMail;
 use App\Mail\UserMailSend;
 use App\Models\User;
@@ -20,9 +21,17 @@ class HomeController extends Controller
         $user = User::create($data);
         $latest_users = User::latest()->take(10)->get();
 
-        dispatch(new SendEmailQueueJob($latest_users, $user, $data));
+        for($i=0; $i<5; $i++){
+
+            dispatch(new SendEmailQueueJob($latest_users, $user, $data));
+        }
 
         return redirect()->back()->with('success', 'User created successfully');
-        dd($request->all());
+
+    }
+
+    public function sendOtp(){
+        dispatch(new SendOTPJob())->onQueue('first');
+        return redirect()->back()->with('success', 'User created successfully');
     }
 }
